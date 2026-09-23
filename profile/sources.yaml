@@ -1,0 +1,93 @@
+# ============================================================================
+# SOURCES — where offers come from. The full list, with what each source
+# covers and which key it needs, is in the README ("Sources") or via:
+#     npm run sources
+#
+# A source runs when it is listed under `enabled` AND its keys are in .env.
+# Without its key, a source is skipped with a message: nothing breaks.
+#
+# Sources of kind "html" read job sites' pages: they are off in this example.
+# Read each site's terms of use before enabling one (README, "Responsible use").
+# ============================================================================
+
+enabled:
+  - ats              # career pages of the companies in companies.yaml
+  - rss
+  - boards
+  - aijobs
+  - adzuna           # needs ADZUNA_APP_ID / ADZUNA_APP_KEY (free)
+  - france_travail   # needs FRANCE_TRAVAIL_ID / FRANCE_TRAVAIL_SECRET (free)
+  - jooble           # needs JOOBLE_API_KEY (free)
+  - jobroom_ch
+  - welcomekit
+
+# --- Per-source settings (only the ones you enable matter) ----------------------
+
+adzuna:
+  countries: [fr, be, ch]
+
+jooble:
+  searches:
+    - { keywords: AI engineer, location: France }
+    - { keywords: automation engineer, location: Belgium }
+
+boards:
+  list:
+    - { name: arbeitnow, url: "https://www.arbeitnow.com/api/job-board-api", path: data }
+    - { name: remotive,  url: "https://remotive.com/api/remote-jobs?search=ai%20engineer", path: jobs }
+    - { name: himalayas, url: "https://himalayas.app/jobs/api/search?q=ai%20engineer&limit=100", path: jobs }
+    - { name: remoteok,  url: "https://remoteok.com/api" }
+
+rss:
+  feeds:
+    - { name: We Work Remotely — Programming, country: Remote, url: "https://weworkremotely.com/categories/remote-programming-jobs.rss" }
+    - { name: Himalayas, country: Remote, url: "https://himalayas.app/jobs/rss" }
+
+aijobs:
+  pages: 3
+  region: europe
+
+# Queries default to searchQueries (titles.yaml). Override per source when useful:
+jobroom_ch:
+  queries: [artificial intelligence, automation, software engineer]
+
+mycareersfuture:
+  queries: [ai engineer, automation engineer]
+
+welcomekit:
+  maxOffers: 400
+  # organizations: [{ ref: <id in the WelcomeKit URL>, name: Company }]   # default: a built-in list of French AI consultancies
+
+wttj:
+  filters: []            # Algolia facet filters, e.g. ["contract_type:vie"]
+
+fantastic_jobs:
+  callsPerRun: 1
+  offersPerCall: 25
+  searches:
+    - { location: France, window: 7d, titles: '"AI Engineer" OR "Automation Engineer"' }
+
+free_work:     { pages: 2, maxOffers: 60 }
+espresso_jobs: { pages: 1, maxOffers: 40 }
+talent:
+  pages: 1
+  maxOffers: 40
+  domains:
+    - { domain: fr, place: France, country: France }
+    - { domain: be, place: Belgium, country: Belgique }
+jobteaser:     { pages: 1, maxOffers: 60 }
+lesjeudis:     { pages: 2, maxOffers: 40 }
+jobs_lu:       { pages: 1, maxOffers: 60 }
+jobscout24:    { pages: 2, maxOffers: 40 }
+zhaopin:       { queries: [人工智能, 自动化工程师] }
+engagement_jeunes: { pages: 5, maxOffers: 60 }
+vie_entreprises:
+  maxOffers: 30
+  sites:
+    - { name: Alstom, engine: successfactors, url: "https://jobsearch.alstom.com", pages: 2 }
+
+# Second pass: for kept offers whose source gave no (or a short) description,
+# open the offer page and read its schema.org JobPosting. HelloWork and WTTJ only.
+details:
+  sources: [hellowork, wttj]
+  maxPerRun: 80

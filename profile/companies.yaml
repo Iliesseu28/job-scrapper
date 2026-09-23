@@ -1,0 +1,14 @@
+# ============================================================================
+# COMPANIES — career pages read directly through their ATS (source "ats").
+# Companies post there days before job boards, and these public APIs need no key.
+#
+# ats  ∈ ashby | greenhouse | lever | smartrecruiters | workable | recruitee | teamtailor | welcomekit
+# slug = the company id in its career-page URL, e.g. jobs.ashbyhq.com/<slug>,
+#        boards.greenhouse.io/<slug>, jobs.lever.co/<slug>, apply.workable.com/<slug>
+# ============================================================================
+companies:
+  - { name: Mistral AI,   country: FR, ats: lever,      slug: mistral }
+  - { name: Hugging Face, country: FR, ats: workable,   slug: huggingface }
+  - { name: Dust,         country: FR, ats: ashby,      slug: dust }
+  - { name: n8n,          country: DE, ats: ashby,      slug: n8n }
+  - { name: Anthropic,    country: US, ats: greenhouse, slug: anthropic }

@@ -1,0 +1,20 @@
+{
+  "name": "job-scrapper",
+  "version": "1.0.0",
+  "description": "Collects job offers from 32 sources, filters them with your own rules, and has an LLM score each one against your profile. Local, no database.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "scan": "node pipeline/run.mjs scan",
+    "collect": "node pipeline/run.mjs collect",
+    "filter": "node pipeline/run.mjs filter",
+    "score": "node pipeline/run.mjs score",
+    "sources": "node pipeline/run.mjs sources",
+    "check": "node pipeline/run.mjs check",
+    "stats": "node pipeline/run.mjs stats",
+    "view": "node viewer/server.mjs",
+    "test": "node --test \"tests/**/*.test.mjs\""
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": { "js-yaml": "^4.1.0" }
+}

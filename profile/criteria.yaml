@@ -1,0 +1,82 @@
+# ============================================================================
+# CRITERIA — the hard rules. Applied by scoring/filter.mjs BEFORE any AI call:
+# free, instant, reproducible. Its only job is to throw away what obviously
+# does not fit, so the AI is never paid to read noise.
+# Rule of thumb: when in doubt, keep. A wrongly kept offer costs a fraction of a
+# cent; a wrongly rejected one is lost forever.
+#
+# Patterns are case-insensitive regular expressions. \b = word boundary.
+# Accents are ignored when matching locations ("télétravail" = "teletravail").
+# An empty list (or a missing key) switches the rule off.
+# ============================================================================
+
+candidate:
+  name: Alex Martin
+
+# Offers published more than N days ago are dropped.
+freshnessDays: 10
+# Sources that keep offers online longer (company career pages, VIE catalogue).
+freshnessDaysBySource:
+  ats: 30
+  vie: 45
+
+# --- Where you accept to work -------------------------------------------------
+location:
+  # Tested against city / location / country. A match = inside your target area.
+  target: [france, paris, lyon, belgium, belgique, luxembourg, switzerland, suisse, geneve, lausanne]
+  # ISO codes, read in the country field only ("CA" in "Mountain View, CA" is a US state).
+  countryCodes: [fr, be, lu, ch]
+  # Tested FIRST: an excluded place loses even when the ad also says "remote".
+  excluded: [united states, "\\busa\\b", india, united kingdom, london]
+  # "Remote" / "anywhere" with no real place counts as inside your area.
+  remoteIsTarget: true
+  # Outside your area, keep the offer anyway when the ad contains one of these.
+  acceptElsewhereIf: [visa sponsorship, relocation package]
+  # Outside your area, keep the offer anyway when the ad itself is written in this
+  # language (fr or en). Leave empty to switch off.
+  acceptElsewhereIfWrittenIn:
+
+# --- Contracts ------------------------------------------------------------------
+contracts:
+  # Rejected, no exception (tested on title + contract field).
+  alwaysReject: [internship, "\\bintern\\b", stagiaire, alternance, apprenti, apprenticeship, graduate program]
+  # Rejected unless the offer ALSO mentions one of acceptedWords ("permanent or freelance" is kept).
+  rejectUnlessAlsoOffered: [freelance, contractor, portage, "int[ée]rim"]
+  acceptedWords: [cdi, cdd, permanent, "fixed.?term", "full.?time"]
+
+# --- Seniority -------------------------------------------------------------------
+seniority:
+  # Titles rejected outright. A seniority hidden in the description is left to the AI.
+  rejectTitles: ["\\bsenior\\b", "\\bsr\\.?\\s", lead engineer, tech lead, staff engineer, principal engineer, engineering manager, head of]
+
+# --- Languages -------------------------------------------------------------------
+languages:
+  # The ad REQUIRES a language level you do not have → rejected.
+  rejectIfRequired: [native english, english native speaker, fluent german, german required, native mandarin, fluent dutch]
+  # The working language is one you do not want (kept when acceptElsewhereIf matches).
+  rejectIfWorkingLanguageIs: []
+  # The ad itself is written in a language you do not read: 3 distinct words are enough.
+  foreignAdWords:
+    german: [wir suchen, bewerbung, gehalt, vollzeit, ihre aufgaben, ihr profil, du bist]
+    dutch: [wij zoeken, vacature, solliciteren, werkzaamheden, wij bieden]
+  # …unless the ad says the work happens in a language you speak.
+  workingLanguageOk: [working language is english, we work in english, english speaking environment]
+
+# Offers mainly about something you do not want to do (ignored when the title has a domain signal).
+rejectIfMainlyAbout: [data entry, data cleaning, saisie de données, daily reporting]
+
+# Words in the title or contract that move an offer up the AI queue.
+priorityBoost: ["full.?remote", "\\bvie\\b"]
+
+# --- AI scoring ------------------------------------------------------------------
+# The provider, model and key live in .env (see .env.example).
+scoring:
+  maxPerRun: 150            # offers scored per run at most (cost cap); the rest wait for the next run
+  keepThreshold: 4.0        # the viewer opens on offers at or above this score
+  detailsThreshold: 3.5     # summary / pros / cons are written only at or above this score
+  batchSize: 12             # offers per AI call
+  descriptionChars: 1800    # description length sent to the model
+  maxAgeDays: 7             # older offers are not worth paying for
+  scoreWithoutDescription: false
+  outputLanguage: English   # language of the texts the AI writes for you
+  strategy: single-pass     # or two-pass (score everything first, then write details for the best)

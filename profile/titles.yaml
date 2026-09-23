@@ -1,0 +1,43 @@
+# ============================================================================
+# TITLES & QUERIES — what to search for, and which job titles you want.
+# Adapt everything to YOUR job: this example is an "AI / automation engineer".
+# ============================================================================
+
+# Sent to the sources. Keep them short: job-board search engines are bad at long queries.
+searchQueries:
+  english: [AI Engineer, Applied AI Engineer, LLM Engineer, Automation Engineer, Solutions Engineer, Forward Deployed Engineer]
+  # Local-language queries, used by local job sites (France Travail, APEC, HelloWork…).
+  local: [ingénieur IA, développeur IA, IA générative, automatisation des processus]
+
+# Words that prove the job is in your field. One in the TITLE is enough;
+# otherwise the text must contain two. Empty list = rule off (titles decide alone).
+domainSignals:
+  - "\\bai\\b"
+  - "\\bia\\b"
+  - artificial intelligence
+  - intelligence artificielle
+  - "\\bllm\\b"
+  - genai
+  - generative ai
+  - machine learning
+  - "ai agents?"
+  - agentic
+  - "\\brag\\b"
+  - automation
+  - automatisation
+  - "\\bn8n\\b"
+  - workflow
+
+# Pass on their own, no signal needed.
+goldenTitles: [ai engineer, applied ai, llm engineer, agent engineer, forward deployed, automation engineer, "ingénieur ia\\b"]
+
+# Open the door when the text also has domain signals.
+targetTitles: [software engineer, product engineer, "full.?stack engineer", "solutions? engineer", data engineer, ai consultant, ai product manager]
+
+# Accepted only when your field is at the heart of the job: a signal in the title,
+# or at least two strongSignals in the text. Empty both lists to switch the rule off.
+conditionalTitles: [product owner, product manager, project manager, chef de projet]
+strongSignals: ["ai agents?", agentic, genai, generative ai, process automation, workflow automation, "\\bn8n\\b", zapier, chatbot, copilot]
+
+# Rejected unless the title is also golden/target or carries a domain signal.
+rejectedTitles: [data analyst, business analyst, data scientist, research scientist, "\\bphd\\b", devops, sales, account executive, recruiter, helpdesk]
