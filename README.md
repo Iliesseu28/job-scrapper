@@ -1,8 +1,12 @@
 # Job scrapper
 
-Your own job-search radar. It reads job offers from up to **32 sources** (official APIs, company career pages, job boards, feeds), throws away what obviously doesn't fit with **your rules**, and asks an **LLM to score the rest against your profile** — with a short "what is this job, really" summary, pros and cons for the best ones. You go through the results in a small local web page.
+Your own job-search radar, built for French-speaking job seekers. It reads job offers from up to **32 sources** (official APIs, company career pages, job boards, feeds), throws away what obviously doesn't fit with **your rules**, and asks an **LLM to score the rest against your profile** — with a short "what is this job, really" summary, pros and cons for the best ones. You go through the results in a small local web page.
 
 You adapt it by editing **one folder, `profile/`, and one file, `.env`**. No code to change.
+
+> **Built for French-speaking job seekers.** 20 of the 32 sources cover the French-speaking job market: France (12 sources, including France Travail, APEC, Welcome to the Jungle, HelloWork and the VIE catalogue), Belgium, Switzerland (Romandy), Luxembourg, Québec and Canada, Morocco, Algeria, Tunisia, Senegal and Côte d'Ivoire. The filter recognises ads written in French or English. The other 12 cover the world (company career pages, Adzuna in 19 countries, Jooble in 70, remote boards, feeds) or other countries (German-speaking Switzerland, Singapore, Malaysia, China), so the tool still works outside that area, with fewer sources.
+>
+> 🇫🇷 *Pensé pour les francophones : 20 des 32 sources couvrent la France et les pays francophones. La documentation est en anglais, mais le profil (`profile/`) s'écrit dans la langue de votre choix.*
 
 ```
                 ┌──────────────── profile/ (you) ────────────────┐
@@ -106,6 +110,14 @@ Patterns are case-insensitive regular expressions, and accents are ignored on bo
 ## Sources
 
 A source runs when it is listed under `enabled` in `profile/sources.yaml` **and** its keys (if any) are in `.env`. A source without its key is skipped with a message — nothing breaks. `npm run sources` prints this table for your setup.
+
+**Coverage at a glance**
+
+| Area | Sources |
+|---|---|
+| France (12) | `france_travail`, `apec`, `wttj`, `stationf`, `welcomekit`, `hellowork`, `free_work`, `jobteaser`, `lesjeudis`, `vie`, `engagement_jeunes`, `vie_entreprises` |
+| Other French-speaking markets (8) | `talent` (BE, CH, LU, MA, TN, SN, CI), `jobs_lu` (Luxembourg), `jobup_ch` (Romandy), `espresso_jobs` (Québec), `jobbank_canada`, `rekrute` (Morocco), `emploitic` (Algeria), `emploidakar` (Senegal) |
+| Worldwide and other countries (12) | `ats`, `rss`, `boards`, `aijobs`, `adzuna`, `jooble`, `fantastic_jobs`, `jobroom_ch`, `jobscout24`, `mycareersfuture`, `hiredly`, `zhaopin` |
 
 **Kinds** — `api`: official public API · `ats`: companies' career-page APIs · `feed`: RSS / public JSON lists · `site-api`: the JSON search endpoint a job site's own pages use · `html`: reads the site's pages.
 
