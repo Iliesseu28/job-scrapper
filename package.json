@@ -13,7 +13,7 @@
     "check": "node pipeline/run.mjs check",
     "stats": "node pipeline/run.mjs stats",
     "view": "node viewer/server.mjs",
-    "test": "node --test \"tests/**/*.test.mjs\""
+    "test": "node --test tests/*.test.mjs tests/sources/*.test.mjs"
   },
   "engines": { "node": ">=20" },
   "dependencies": { "js-yaml": "^4.1.0" }

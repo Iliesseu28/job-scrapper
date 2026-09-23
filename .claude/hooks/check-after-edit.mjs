@@ -28,7 +28,10 @@ if (rel.startsWith('profile/')) {
 }
 
 if (/^(scraping|scoring|pipeline|tests)\/.*\.mjs$/.test(rel)) {
-  const r = spawnSync(process.execPath, ['--test', 'tests/**/*.test.mjs'], { cwd: root, encoding: 'utf8', timeout: 110000 });
+  // Explicit file list: Node 20 does not expand globs given to --test.
+  const tests = fs.readdirSync(path.join(root, 'tests'), { recursive: true })
+    .map((f) => String(f).split(path.sep).join('/')).filter((f) => f.endsWith('.test.mjs')).map((f) => 'tests/' + f);
+  const r = spawnSync(process.execPath, ['--test', ...tests], { cwd: root, encoding: 'utf8', timeout: 110000 });
   const out = (r.stdout || '') + (r.stderr || '');
   if (r.status !== 0) {
     const failed = out.split('\n').filter((l) => /^not ok|^# fail|error:/.test(l)).slice(0, 15).join('\n');

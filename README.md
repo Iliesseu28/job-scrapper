@@ -1,8 +1,14 @@
 # Job scrapper
 
+[![test](https://github.com/Iliesseu28/job-scrapper/actions/workflows/test.yml/badge.svg)](https://github.com/Iliesseu28/job-scrapper/actions/workflows/test.yml)
+
 Your own job-search radar, built for French-speaking job seekers. It reads job offers from up to **32 sources** (official APIs, company career pages, job boards, feeds), throws away what obviously doesn't fit with **your rules**, and asks an **LLM to score the rest against your profile** — with a short "what is this job, really" summary, pros and cons for the best ones. You go through the results in a small local web page.
 
 You adapt it by editing **one folder, `profile/`, and one file, `.env`**. No code to change.
+
+![The local viewer, here with made-up example offers](docs/viewer.png)
+
+*The local viewer (example offers, all fictional).*
 
 > **Built for French-speaking job seekers.** 20 of the 32 sources cover the French-speaking job market: France (12 sources, including France Travail, APEC, Welcome to the Jungle, HelloWork and the VIE catalogue), Belgium, Switzerland (Romandy), Luxembourg, Québec and Canada, Morocco, Algeria, Tunisia, Senegal and Côte d'Ivoire. The filter recognises ads written in French or English. The other 12 cover the world (company career pages, Adzuna in 19 countries, Jooble in 70, remote boards, feeds) or other countries (German-speaking Switzerland, Singapore, Malaysia, China), so the tool still works outside that area, with fewer sources.
 >

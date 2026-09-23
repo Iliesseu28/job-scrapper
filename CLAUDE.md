@@ -26,7 +26,7 @@ npm run score            AI scoring of kept offers  (-- --limit N  -- --rescore 
 npm run scan             collect → filter → details → score (the daily run)
 npm run stats            totals
 npm run view             http://localhost:4321
-npm test                 all tests (glob form: `node --test "tests/**/*.test.mjs"`)
+npm test                 all tests (`node --test tests/*.test.mjs tests/sources/*.test.mjs`)
 ```
 
 ## Rules
