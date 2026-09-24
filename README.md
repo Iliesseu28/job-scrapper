@@ -14,6 +14,8 @@ You adapt it by editing **one folder, `profile/`, and one file, `.env`**. No cod
 >
 > 🇫🇷 *Pensé pour les francophones : 20 des 32 sources couvrent la France et les pays francophones. La documentation est en anglais, mais le profil (`profile/`) s'écrit dans la langue de votre choix.*
 
+<p align="center"><img src="docs/architecture.svg" alt="How it works: 32 sources, collect new offers only, filter them with your rules, score the rest with an LLM against your profile, review them in the local viewer. Everything is stored as local JSON in data/." width="820"></p>
+
 ```
                 ┌──────────────── profile/ (you) ────────────────┐
                 │ criteria · titles · sources · companies · CV   │

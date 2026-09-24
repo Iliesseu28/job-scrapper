@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="960" height="520" role="img" aria-label="How job-scrapper works: 32 sources, collect new offers only, filter them with your rules, score the rest with an LLM against your profile, review them in a local viewer. Everything is stored as local JSON in data/. Claude Code skills, agents and hooks are optional.">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7">
+      <circle cx="5" cy="5" r="4" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#6e7681"/>
+    </marker>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#161b22"/>
+      <stop offset="1" stop-color="#11161d"/>
+    </linearGradient>
+  </defs>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .h { fill: #e6edf3; font-size: 17px; font-weight: 600; }
+    .t { fill: #c9d1d9; font-size: 13.5px; }
+    .m { fill: #8b949e; font-size: 12.5px; }
+    .p { fill: #8b949e; font-size: 12px; }
+    .a { fill: #38bdf8; font-size: 12.5px; font-weight: 600; }
+    .n { fill: #38bdf8; font-size: 13.5px; font-weight: 600; }
+  </style>
+
+  <rect x="0" y="0" width="960" height="520" rx="18" fill="#0d1117"/>
+
+  <!-- top left: the command -->
+  <text x="34" y="50" class="a mono" style="font-size:15px">npm run scan</text>
+  <text x="34" y="72" class="m">the daily run,</text>
+  <text x="34" y="90" class="m">one command</text>
+
+  <!-- top right: footprint -->
+  <text x="794" y="50" class="t" style="fill:#e6edf3;font-weight:600">Node 20+</text>
+  <text x="794" y="72" class="m">1 dependency: js-yaml</text>
+  <text x="794" y="90" class="m">no database, no account</text>
+
+  <!-- profile (the only thing you edit) -->
+  <rect x="208" y="22" width="544" height="92" rx="12" fill="url(#card)" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="226" y="48" class="h"><tspan class="mono">profile/</tspan><tspan class="m" dx="10" style="font-weight:400">the only folder you edit</tspan></text>
+  <text x="734" y="48" class="m" text-anchor="end">+ .env for your keys</text>
+  <path d="M385 62 V102 M575 62 V102" stroke="#30363d" stroke-width="1"/>
+  <text x="290" y="78" class="t mono" text-anchor="middle" style="font-size:12.5px">sources.yaml</text>
+  <text x="290" y="97" class="t mono" text-anchor="middle" style="font-size:12.5px">companies.yaml</text>
+  <text x="480" y="78" class="t mono" text-anchor="middle" style="font-size:12.5px">criteria.yaml</text>
+  <text x="480" y="97" class="t mono" text-anchor="middle" style="font-size:12.5px">titles.yaml</text>
+  <text x="670" y="78" class="t mono" text-anchor="middle" style="font-size:12.5px">profile.md</text>
+  <text x="670" y="97" class="t mono" text-anchor="middle" style="font-size:12.5px">scoring-rules.md</text>
+
+  <!-- profile feeds three stages -->
+  <path d="M290 116 V156" stroke="#38bdf8" stroke-width="1.6" stroke-dasharray="5 4" marker-start="url(#dot)" marker-end="url(#arr)"/>
+  <path d="M480 116 V156" stroke="#38bdf8" stroke-width="1.6" stroke-dasharray="5 4" marker-start="url(#dot)" marker-end="url(#arr)"/>
+  <path d="M670 116 V156" stroke="#38bdf8" stroke-width="1.6" stroke-dasharray="5 4" marker-start="url(#dot)" marker-end="url(#arr)"/>
+  <text x="300" y="141" class="a">what to fetch</text>
+  <text x="490" y="141" class="a">your hard rules</text>
+  <text x="680" y="141" class="a">sent to the AI</text>
+
+  <!-- pipeline arrows -->
+  <path d="M184 258 H204" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M374 258 H394" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M564 258 H584" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M754 258 H774" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- 1. sources -->
+  <g>
+    <rect x="18" y="160" width="164" height="196" rx="12" fill="url(#card)" stroke="#30363d" stroke-width="1.2"/>
+    <text x="34" y="188" class="h">32 sources</text>
+    <text x="34" y="208" class="p mono">scraping/sources/</text>
+    <text x="56" y="236" class="n mono" text-anchor="end">6</text><text x="66" y="236" class="t mono">api</text>
+    <text x="56" y="256" class="n mono" text-anchor="end">1</text><text x="66" y="256" class="t mono">ats</text>
+    <text x="56" y="276" class="n mono" text-anchor="end">3</text><text x="66" y="276" class="t mono">feed</text>
+    <text x="56" y="296" class="n mono" text-anchor="end">5</text><text x="66" y="296" class="t mono">site-api</text>
+    <text x="56" y="316" class="n mono" text-anchor="end">17</text><text x="66" y="316" class="t mono">html</text>
+    <text x="34" y="340" class="m">20 French-speaking</text>
+  </g>
+
+  <!-- 2. collect -->
+  <g>
+    <rect x="208" y="160" width="164" height="196" rx="12" fill="url(#card)" stroke="#30363d" stroke-width="1.2"/>
+    <text x="224" y="188" class="h">Collect</text>
+    <text x="224" y="208" class="p mono">scraping/</text>
+    <text x="224" y="238" class="t">new offers only</text>
+    <text x="224" y="262" class="m">since the last run,</text>
+    <text x="224" y="281" class="m">plus a 2-day margin</text>
+    <text x="224" y="305" class="m">capped pages,</text>
+    <text x="224" y="324" class="m">pauses between calls</text>
+  </g>
+
+  <!-- 3. filter -->
+  <g>
+    <rect x="398" y="160" width="164" height="196" rx="12" fill="url(#card)" stroke="#30363d" stroke-width="1.2"/>
+    <text x="414" y="188" class="h">Filter</text>
+    <text x="414" y="208" class="p mono">scoring/filter.mjs</text>
+    <text x="414" y="238" class="t">9 rules, in order</text>
+    <text x="414" y="262" class="m">contract, seniority,</text>
+    <text x="414" y="281" class="m">language, location…</text>
+    <text x="414" y="305" class="m">free, no AI call</text>
+    <text x="414" y="324" class="m">every drop explained</text>
+  </g>
+
+  <!-- 4. LLM score -->
+  <g>
+    <rect x="588" y="160" width="164" height="196" rx="12" fill="url(#card)" stroke="#30363d" stroke-width="1.2"/>
+    <text x="604" y="188" class="h">LLM score</text>
+    <text x="604" y="208" class="p mono">scoring/score.mjs</text>
+    <text x="604" y="238" class="t">0 to 5, plus a verdict</text>
+    <text x="604" y="262" class="m">summary, pros, cons</text>
+    <text x="604" y="281" class="m">for the best offers</text>
+    <text x="604" y="305" class="m">duplicates scored once</text>
+    <text x="604" y="324" class="m">9 AI providers</text>
+  </g>
+
+  <!-- 5. viewer -->
+  <g>
+    <rect x="778" y="160" width="164" height="196" rx="12" fill="url(#card)" stroke="#30363d" stroke-width="1.2"/>
+    <text x="794" y="188" class="h">Viewer</text>
+    <text x="794" y="208" class="p mono">localhost:4321</text>
+    <text x="794" y="238" class="t">review your offers</text>
+    <text x="794" y="262" class="m">save, hide,</text>
+    <text x="794" y="281" class="m">mark applied</text>
+    <text x="794" y="305" class="m">filters, sorting,</text>
+    <text x="794" y="324" class="m">keyboard shortcuts</text>
+  </g>
+
+  <!-- under sources -->
+  <text x="34" y="395" class="m">html sources are off</text>
+  <text x="34" y="413" class="m">in the example profile</text>
+
+  <!-- local store -->
+  <path d="M290 358 V375" stroke="#6e7681" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#arrg)"/>
+  <path d="M480 358 V375" stroke="#6e7681" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#arrg)"/>
+  <path d="M670 358 V375" stroke="#6e7681" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#arrg)"/>
+  <path d="M860 359 V375" stroke="#6e7681" stroke-width="1.4" stroke-dasharray="3 3" marker-start="url(#arrg)" marker-end="url(#arrg)"/>
+  <rect x="208" y="378" width="734" height="40" rx="10" fill="#11161d" stroke="#30363d" stroke-width="1.2"/>
+  <text x="226" y="403" class="t mono" style="fill:#e6edf3;font-weight:600">data/</text>
+  <text x="282" y="403" class="m mono">offers.json</text>
+  <text x="382" y="403" class="m mono">runs.json</text>
+  <text x="466" y="403" class="m mono">decisions.json</text>
+  <text x="926" y="403" class="m" text-anchor="end">local JSON, git-ignored</text>
+
+  <!-- Claude Code -->
+  <rect x="18" y="436" width="924" height="66" rx="12" fill="url(#card)" stroke="#30363d" stroke-width="1.2"/>
+  <text x="38" y="463" class="h">Claude Code<tspan class="m" dx="10" style="font-weight:400">optional, in .claude/</tspan></text>
+  <rect x="674" y="448" width="78" height="22" rx="11" fill="none" stroke="#38bdf8" stroke-width="1.2"/>
+  <text x="713" y="463" class="a" text-anchor="middle">4 skills</text>
+  <rect x="760" y="448" width="82" height="22" rx="11" fill="none" stroke="#38bdf8" stroke-width="1.2"/>
+  <text x="801" y="463" class="a" text-anchor="middle">3 agents</text>
+  <rect x="850" y="448" width="76" height="22" rx="11" fill="none" stroke="#38bdf8" stroke-width="1.2"/>
+  <text x="888" y="463" class="a" text-anchor="middle">2 hooks</text>
+  <text x="38" y="488" class="m"><tspan class="mono" style="fill:#c9d1d9">profile-coach</tspan> turns your CV into profile/.  <tspan class="mono" style="fill:#c9d1d9">source-doctor</tspan> repairs a broken source.  <tspan class="mono" style="fill:#c9d1d9">filter-tuner</tspan> suggests rule edits.</text>
+</svg>
