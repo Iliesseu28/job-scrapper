@@ -1,10 +1,14 @@
 # Job scrapper
 
+<p align="center"><b>English</b> · <a href="README.fr.md">Français</a></p>
+
 [![test](https://github.com/Iliesseu28/job-scrapper/actions/workflows/test.yml/badge.svg)](https://github.com/Iliesseu28/job-scrapper/actions/workflows/test.yml)
 
 Your own job-search radar, built for French-speaking job seekers. It reads job offers from up to **32 sources** (official APIs, company career pages, job boards, feeds), throws away what obviously doesn't fit with **your rules**, and asks an **LLM to score the rest against your profile** — with a short "what is this job, really" summary, pros and cons for the best ones. You go through the results in a small local web page.
 
 You adapt it by editing **one folder, `profile/`, and one file, `.env`**. No code to change.
+
+<p align="center"><a href="docs/demo.mp4"><img src="docs/demo.gif" alt="Demo: job-scrapper reads 32 sources, filters the offers with your rules and scores the rest with an LLM against your profile" width="820"></a><br><sub>Click for the full-quality video (with sound)</sub></p>
 
 ![The local viewer, here with made-up example offers](docs/viewer.png)
 
@@ -12,7 +16,7 @@ You adapt it by editing **one folder, `profile/`, and one file, `.env`**. No cod
 
 > **Built for French-speaking job seekers.** 20 of the 32 sources cover the French-speaking job market: France (12 sources, including France Travail, APEC, Welcome to the Jungle, HelloWork and the VIE catalogue), Belgium, Switzerland (Romandy), Luxembourg, Québec and Canada, Morocco, Algeria, Tunisia, Senegal and Côte d'Ivoire. The filter recognises ads written in French or English. The other 12 cover the world (company career pages, Adzuna in 19 countries, Jooble in 70, remote boards, feeds) or other countries (German-speaking Switzerland, Singapore, Malaysia, China), so the tool still works outside that area, with fewer sources.
 >
-> 🇫🇷 *Pensé pour les francophones : 20 des 32 sources couvrent la France et les pays francophones. La documentation est en anglais, mais le profil (`profile/`) s'écrit dans la langue de votre choix.*
+> 🇫🇷 *Pensé pour les francophones : 20 des 32 sources couvrent la France et les pays francophones. Cette page existe [en français](README.fr.md), et le profil (`profile/`) s'écrit dans la langue de votre choix.*
 
 <p align="center"><img src="docs/architecture.svg" alt="How it works: 32 sources, collect new offers only, filter them with your rules, score the rest with an LLM against your profile, review them in the local viewer. Everything is stored as local JSON in data/." width="820"></p>
 
